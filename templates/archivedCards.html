@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Archived Flash Cards
+{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Unarchive</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards %}
+                <tr>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:10rem;">{{ card.tag }}</td>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:20rem;">{{card.question}}</td>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:20rem;">{{ card.answer }}</td>
+                    <td><a href="/unarchiveCard?question={{card.question}}">Unarchive</a></td>
+                    <td><a href="/deleteCard?question={{card.question}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

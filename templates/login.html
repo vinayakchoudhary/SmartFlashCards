@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    {% if error != "" %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    <form action="/login" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password" required>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin:auto;">Login</button>
+    </form>
+        <p style="margin:1rem;">Don't have an account? <a href="/register">Click here</a></p>
+{% endblock %}

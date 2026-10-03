@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Revise Flash Cards
+{% endblock %}
+
+{% block body %}
+    <h1 style="display:flex; justify-content:center; align-items:center;height: 50vh;">{{question}}</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <button class="btn btn-primary" type="submit">Check Answer</button>
+    </div>
+    <script>
+        document.querySelector('button').addEventListener('click', function(){
+            window.location.href= '/showAns_self?question={{question}}';
+        });
+    </script>
+
+
+{% endblock %}

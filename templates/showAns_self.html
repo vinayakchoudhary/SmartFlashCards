@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Revise Flash Cards
+{% endblock %}
+
+{% block body %}
+    <h1 style="display:flex; justify-content:center; align-items:center;height: 50vh;">{{answer}}</h1>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <form action="/showAns_self?question={{question}}" method="post">
+            <button class="btn btn-danger" type="submit" value="wrong" name="answer" style="margin-right:3rem;">Got it Incorrect</button>
+        </form>
+        <form action="/showAns_self?question={{question}}" method="post" style="margin-left:3rem;">
+            <button class="btn btn-success" type="submit" value="correct" name="answer">Got it Correct</button>
+        </form>
+    </div>
+
+
+{% endblock %}

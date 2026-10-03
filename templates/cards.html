@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Flash Cards
+{% endblock %}
+
+{% block body %}
+    {% if error != "" %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    <form action="/cards" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control" name="question" placeholder="Question" type="text" required >
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control" name="answer" placeholder="Answer" type="text" required>
+        </div>
+        <div class="mb-3">
+            <select required name="tag" style="float:left; margin-left:1rem;">
+                {% for tag in tags %}
+                    {% if tag.name == "Untagged" %}
+                        <option value={{tag.name}} selected >{{tag.name}}</option>
+                    {% else %}
+                        <option value={{tag.name}}>{{ tag.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select required name="type" style="float:left; margin-left:1rem;">
+                    <option value="" selected diabled>Select type</option>
+                    <option value="self">Self assessment</option>
+                    <option value="enter">Type answer</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="margin-left:1rem;margin-bottom:1rem; float:left; margin:">Add card</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Level</th>
+                <th>Next date to revise</th>
+                <th>Edit</th>
+                <th>Archive</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards %}
+                <tr>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:10rem;">{{ card.tag }}</td>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:20rem;">{{card.question}}</td>
+                    <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:20rem;">{{ card.answer }}</td>
+                    <td>{{ card.level }}</td>
+                    <td>{{ card.nextDate }}</td>
+                    <td><a href="/editCard?question={{card.question}}">Edit</a></td>
+                    <td><a href="/archiveCard?question={{card.question}}">Archive</a></td>
+                    <td><a href="/deleteCard?question={{card.question}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Tag
+{% endblock %}
+
+{% block body %}
+    {% if error != "" %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    <form action="/editTag?tag={{name}}" method="post">
+        <div class="mb-3">
+            <input value={{name}} autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Enter tag name" type="text" required style="display:inline">
+            <button class="btn btn-primary" type="submit" style="margin:auto;">Edit tag</button>
+        </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tags
+{% endblock %}
+
+{% block body %}
+    {% if error != "" %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    <form action="/tags" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Enter tag name" type="text" required style="display:inline">
+            <button class="btn btn-primary" type="submit" style="margin:auto;">Add new tag</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number of Flash Cards</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tag in tags %}
+                <tr>
+                    {% if tag.name != "Untagged"%}
+                        <td style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:10rem;">{{ tag.name }}</td>
+                        <td>{{tag.count}}</td>
+                        <td><a href="/editTag?tag={{tag.name}}">Edit</a></td>
+                        <td><a href="/deleteTag?tag={{tag.name}}">Delete</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Revise Flash Cards
+{% endblock %}
+
+{% block body %}
+    <div style="display:flex; justify-content:center; align-items:center;">
+        {% if status == "correct" %}
+            <h2 style="color:green;">Correct Answer!</h2>
+        {% else %}
+            <h2 style="color:red;">Incorrect Answer!</h2>
+        {% endif %}
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;height: 50vh;">
+        <h1 >{{answer}}</h1>
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center;">
+        <button class="btn btn-primary" type="submit">Next</button>
+    </div>
+    <script>
+        document.querySelector('button').addEventListener('click', function(){
+            window.location.href= '/revise';
+        });
+    </script>
+{% endblock %}

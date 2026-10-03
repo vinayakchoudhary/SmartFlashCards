@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Flash Card
+{% endblock %}
+
+{% block body %}
+    {% if error != "" %}
+        <p style="color:red;">{{error}}</p>
+    {% endif %}
+    <form action="/editCard?question={{card.question}}" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control" name="question" placeholder="Question" value="{{card.question}}" type="text" required >
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control" name="answer" placeholder="Answer" type="text" value="{{card.answer}}" required >
+        </div>
+        <div class="mb-3">
+            <select required name="tag" style="float:left; margin-left:1rem;">
+                {% for tag in tags %}
+                    {% if tag.name == card.tag %}
+                        <option value={{tag.name}} selected >{{tag.name}}</option>
+                    {% else %}
+                        <option value={{tag.name}}>{{ tag.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select required name="type" style="float:left; margin-left:1rem;">
+                    {% if card.type == "self" %}
+                        <option value="self" selected>Self assessment</option>
+                        <option value="enter">Type answer</option>
+                    {% else %}
+                        <option value="self">Self assessment</option>
+                        <option value="enter" selected>Type answer</option>
+                    {% endif %}
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="margin-left:1rem; float:left;">Edit card</button>
+    </form>
+{% endblock %}

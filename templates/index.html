@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{%  block body %}
+    <div style="text-align:left;">
+        <h1>
+            <img src="/static/image.png" style="height:7rem;" alt="logo">
+            Smart Flash Cards !
+        </h1>
+        {% if count > 0 %}
+            <h5 style="margin:1rem;">You have {{ count }} flash cards left for today. <a href="/revise">Start now</a> </h5>
+        {% else %}
+            <h5 style="margin:1rem;">No flash cards left for today!</a> </h5>
+        {% endif %}
+    </div>
+    <div style="text-align:left;">
+        <h3 style="margin:1rem; margin-top:3rem;">Why Smart Flash Cards?</h3>
+        <p>Smart Flash Cards help you remember facts and concepts more and for longer with the help of spaced
+            repetition, automatically deciding which cards need to be revised each day, maximising memory which
+             minimising time and efford </p>
+        <h3 style="margin:1rem; margin-top:3rem;">How to use smart flash cards?</h3>
+        <p>You need to enter concept or facts you want to remember in question and answers formal into
+                the add cards page, each flash card can either require you to type out the
+                answer (for factual information like years, name etc) or will ask you if you knew the answer after
+                it's revealed (for more conception questions) </p>
+        <h3 style="margin:1rem; margin-top:3rem;">How it works?</h3>
+         <p>Each flash card you make is give a level, and that level decided how often it's revise. The levels are:
+            <ul>
+                <li>Level - 1 : To be revised everyday, every card starts here, getting a flash card right once sends
+                    it to level - 2</li>
+                <li>Level - 2 : To be revised every 2 days, getting a flash card right 2 consecutive time sends
+                    it to level - 3, not knowing an answer once sends it to level - 1</li>
+                <li>Level - 3 : To be revised every week, getting a flash card right 3 consecutive time sends
+                    it to level - 4, not knowing an answer once sends it to level - 2</li>
+                <li>Level - 4 : To be revised every two week, getting a flash card right 4 consecutive time sends
+                    it to level - 5, not knowing an answer once sends it to level - 3</li>
+                <li>Level - 5 : To be revised every month, not knowing an answer once sends it to level - 4</li>
+            </ul>
+         </p>
+         <p>If you ever forget to complete your flash cards, the skipped flash cards would have their level dropped by 1 or 2
+            and they will be rescheduled over the next 7 days to minimised the extra load while ensuring you don't forget them.
+         </p>
+    </div>
+{% endblock %}
